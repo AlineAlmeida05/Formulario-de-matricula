@@ -21,6 +21,7 @@
                 <h1>Formulário de matrícula</h1>
                 <p>Preencha os dados abaixo para matricular seu filho na escola de educação infantil Estrelas do Amanhã.</p>
                 <form action="https://api.whatsapp.com/send/?phone=5511990071118&text&type=phone_number&app_absent=0" enctype="multipart/form-data" method="post">
+
                     <fieldse class="child-info">
 
                         <legend>Informações da Criança</legend>
@@ -96,7 +97,29 @@
                         </div>
 
                     </fieldset>
+                    <fieldset class="guardian">
+                        <legend>Informações do Responsável</legend>
 
+                        <div class="input-wrapper">
+                            <label for="guardian">Nome do Responsável</label>
+                            <input type="text" id="guardian" name="guardian">
+                            <small>Principal responsável legal e contato de emergência</small>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(11) 9 8765-4321">
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="mail">E-mail</label>
+                            <input type="email" id="mail" name="mail" required>
+                        </div>
+                        <div class="error">
+                            <img src="assets/icons/alert-circle.svg" alt="ícone de alerta vermelho">
+                            <span>Insira um e-mail válido</span>
+                        </div>
+
+                    </fieldset>
                 </form>
             </div>
         </main>
