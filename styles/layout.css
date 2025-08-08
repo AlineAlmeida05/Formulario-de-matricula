@@ -1,0 +1,27 @@
+#app {
+    display: grid;
+    grid-template-columns: 51.25% 48.75%; /* fica um grid com duas colunas */
+
+    height: 100vh; /* altura */
+    overflow: hidden; /* remove scroll (rolagem) */
+}
+
+main {
+    overflow: auto; /* permite rolagem (scroll) */
+    padding: 4rem; /* espaçamento interno */
+
+    & .main-container {
+        max-width: 33rem;
+        margin-left: auto;
+    }
+}
+
+aside {
+    background-color: var(--surface-secondary);
+    padding: 4rem; /* espaçamento interno */
+
+    & .aside-container {
+        max-width: 31rem;
+        margin-right: auto;
+    }
+}
