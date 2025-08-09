@@ -144,7 +144,7 @@
 
                                     <div class="radio-inner">
                                         <div class="radio-image"></div>
-                                            <input type="radio" name="study-shift" id="eveninng" value="eveninng">
+                                            <input type="radio" name="study-shift" id="evening" value="eveninng">
                                             <img src="assets/icons/sun-02.svg" alt="ícone de sol">
                                             <label for="eveninng">Tarde</label>
                                         </div>
@@ -209,6 +209,7 @@
                         <div class="actions-wrapper">
                             <button class="btn-secondary" type="button">Salvar respostas</button>
                             <button class="btn-primary" type="submit">Fazer Matrícula</button>
+                            <div id="confirmacao"></div>
                         </div>
                     </form>
                 </div>
@@ -225,5 +226,133 @@
                 </div>
             </aside>
         </div>
+        <script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Coleta os dados do formulário
+    const nome = document.getElementById('fullname').value.trim();
+    const nascimento = document.getElementById('birth').value.trim();
+    const sexo = document.getElementById('gender').value.trim();
+    const infoMedica = document.getElementById('medical-info').value.trim();
+    const cep = document.getElementById('cep').value.trim();
+    const rua = document.getElementById('street').value.trim();
+    const numero = document.getElementById('number').value.trim();
+    const cidade = document.getElementById('city').value.trim();
+    const estado = document.getElementById('state').value.trim();
+    const responsavel = document.getElementById('guardian').value.trim();
+    const telefone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('mail').value.trim();
+    const termos = document.getElementById('terms').checked;
+
+    // Validação dos campos obrigatórios
+    if (!nome) {
+        alert('Por favor, preencha o nome da criança.');
+        document.getElementById('fullname').focus();
+        return;
+    }
+    if (!nascimento) {
+        alert('Por favor, preencha a data de nascimento.');
+        document.getElementById('birth').focus();
+        return;
+    }
+    if (!sexo) {
+        alert('Por favor, selecione o sexo.');
+        document.getElementById('gender').focus();
+        return;
+    }
+    if (!cep) {
+        alert('Por favor, preencha o CEP.');
+        document.getElementById('cep').focus();
+        return;
+    }
+    if (!numero) {
+        alert('Por favor, preencha o número.');
+        document.getElementById('number').focus();
+        return;
+    }
+    if (!responsavel) {
+        alert('Por favor, preencha o nome do responsável.');
+        document.getElementById('guardian').focus();
+        return;
+    }
+    if (!telefone) {
+        alert('Por favor, preencha o telefone.');
+        document.getElementById('phone').focus();
+        return;
+    }
+    // Validação de e-mail simples
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Por favor, insira um e-mail válido.');
+        document.getElementById('mail').focus();
+        return;
+    }
+
+    // Turno de estudo
+    let turno = '';
+    if(document.getElementById('morning').checked) turno = 'Manhã';
+    if(document.getElementById('evening') && document.getElementById('evening').checked) turno = 'Tarde';
+    if(!turno) {
+        alert('Por favor, selecione o turno de estudo.');
+        return;
+    }
+
+    // Esporte
+    let esporte = '';
+    const esportes = ['football','basketball','swimming','yoga','volleyball','boxing'];
+    esportes.forEach(function(id) {
+        if(document.getElementById(id).checked) esporte = document.querySelector('label[for="'+id+'"]').innerText;
+    });
+    if(!esporte) {
+        alert('Por favor, selecione um esporte.');
+        return;
+    }
+
+    // Termos
+    if(!termos) {
+        alert('Você precisa aceitar os Termos e Condições para continuar.');
+        document.getElementById('terms').focus();
+        return;
+    }
+
+    // Monta a mensagem
+    const mensagem =
+`*Formulário de Matrícula - Estrelas do Amanhã*
+
+👶 *Nome da criança:* ${nome}
+🎂 *Nascimento:* ${nascimento}
+⚧️ *Sexo:* ${sexo}
+🩺 *Informações médicas:* ${infoMedica}
+
+🏠 *Endereço:* ${rua}, ${numero} - ${cidade}/${estado} - CEP: ${cep}
+
+👨‍👩‍👧 *Responsável:* ${responsavel}
+📞 *Telefone:* ${telefone}
+✉️ *E-mail:* ${email}
+
+⏰ *Turno:* ${turno}
+🏅 *Esporte:* ${esporte}
+`;
+
+    // Codifica a mensagem para URL
+    const texto = encodeURIComponent(mensagem);
+
+    // Seu número de WhatsApp (com DDI e DDD)
+    const numeroWhatsapp = '5511990070000';
+
+    // Monta a URL do WhatsApp
+const url = `https://wa.me/${numeroWhatsapp}?text=${texto}`;
+
+// Redireciona para o WhatsApp
+window.open(url, '_blank');
+
+// Limpa o formulário
+e.target.reset();
+document.getElementById('confirmacao').innerText = 'Formulário enviado com sucesso!';
+
+});
+</script>
+
+
     </body>
 </html>

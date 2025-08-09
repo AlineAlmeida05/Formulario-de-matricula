@@ -39,7 +39,7 @@ git clone https://github.com/seu-usuario/estrelas-do-amanha.git
 
 ## Observações
 
-- O envio do formulário é feito via WhatsApp.
+- O envio do formulário é feito via WhatsApp. Para receber as informações do formulário, ao ser direcionado para o whatsapp, coloque seu número na url.
 - Alguns campos são obrigatórios.
 - O projeto é apenas para fins educacionais.
 

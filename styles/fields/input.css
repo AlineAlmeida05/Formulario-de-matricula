@@ -5,16 +5,13 @@ select {
     width: 100%;
     border-radius: .5rem;
     border: 1px solid var(--stroke-default);
-
     padding: .75rem 1rem;
-
     font: var(--text);
 }
 
 label {
     font: var(--text-sm);
     color: var(--text-secondary);
-
     display: block;
     margin-bottom: .25rem;
 }
@@ -30,23 +27,15 @@ input[type="date"]:focus-within {
 
 input[type="date"] {
     position: relative;
-
-    &::-webkit-calendar-picker-indicator {
-        opacity: 0;
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        background: url(../../assets/icons/calendar-03.svg) center/contain ;
-        right: 1rem;
-        width: 1.25rem;
-        height: 1.25rem;
-
-        top: 50%;
-        transform: translateY(-50%);
-    }
 }
+
+/* Esconde o ícone padrão do calendário no Chrome/Safari */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+/* Não é possível adicionar ::before em input[type="date"] com CSS puro.
+   Para adicionar um ícone customizado, é necessário usar um wrapper e posicionar o ícone via HTML/CSS externo. */
 
 select {
     background: url(../../assets/icons/arrow-down-01.svg) no-repeat calc(100% - 1rem);
@@ -56,43 +45,38 @@ select {
     gap: 1.25rem;
 }
 
+/* :has([disabled]) ainda não é suportado em todos os navegadores.
+   Para compatibilidade, use uma classe extra via JS ou aceite que só funcionará em navegadores modernos. */
 .input-wrapper:has([disabled]) {
     opacity: .5;
 }
 
-input {
-    &[disabled] {
-        background-color: var(--surface-disabled);
+input[disabled] {
+    background-color: var(--surface-disabled);
+    border: 1px solid var(--stroke-default);
+    color: var(--text-primary);
+}
 
-        border: 1px solid var(--stroke-default);
+input:invalid {
+    border: 0.125rem solid var(--semantic-error);
+}
 
-        color: var(--text-primary);
-    }
+input + small {
+    font: var(--text-sm);
+    color: #78716C;
+    display: inline-block;
+    margin-top: .25rem;
+}
 
-    &:invalid {
-        border: 0.125rem solid var(--semantic-error);
-    }
+input[required] + .error {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    font: var(--text-sm);
+    color: var(--semantic-error);
+    margin-top: .25rem;
+}
 
-    &+small {
-        font: var(--text-sm);
-        color: #78716C;
-
-        display: inline-block;
-        margin-top: .25rem;
-    }
-
-    &[required]+.error {
-        display: flex;
-        align-items: center;
-        gap: .25rem;
-
-        font: var(--text-sm);
-        color: var(--semantic-error);
-
-        margin-top: .25rem;
-    }
-
-    &:not(:focus):valid+.error {
-        display: none;
-    }
+input:not(:focus):valid + .error {
+    display: none;
 }
