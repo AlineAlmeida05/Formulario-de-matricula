@@ -28,7 +28,7 @@ label + .radio-wrapper {
     }
 
     .radio-image {
-        /* background-image: url(../../assets/icons/icone -default); */
+        background-image: url(../../assets/icons/icon-default.svg);
 
         width: 1.5rem;
         height: 1.5rem;
@@ -42,7 +42,7 @@ label + .radio-wrapper {
         border: 1px solid var(--stroke-highlight);
 
         &.radio-image {
-            /* background-image: url(../../assets/icons/icone - hover); */
+            background-image: url(../../assets/icons/icon-hover.svg);
         }
     }
 
@@ -50,7 +50,7 @@ label + .radio-wrapper {
         border: 2px solid var(--stroke-highlight);
 
         & .radio-image {
-            /* background-image: url(../../assets/icons/radio - checked); */
+            background-image: url(../../assets/icons/icon-checked.svg);
         }
     }
 }
